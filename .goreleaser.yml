@@ -29,7 +29,6 @@ checksum:
 dockers:
   - &image-def
     image_templates:
-      - unixfox/{{.ProjectName}}:{{ .Version }}-amd64
       - ghcr.io/unixfox/{{.ProjectName}}:{{ .Version }}-amd64
     use: buildx
     goos: linux
@@ -38,14 +37,12 @@ dockers:
       - --platform=linux/amd64
   - <<: *image-def
     image_templates:
-      - unixfox/{{.ProjectName}}:{{ .Version }}-arm64
       - ghcr.io/unixfox/{{.ProjectName}}:{{ .Version }}-arm64
     goarch: arm64
     build_flag_templates:
       - --platform=linux/arm64/v8
   - <<: *image-def
     image_templates:
-      - unixfox/{{.ProjectName}}:{{ .Version }}-armv7
       - ghcr.io/unixfox/{{.ProjectName}}:{{ .Version }}-armv7
     goarch: arm
     goarm: '7'
@@ -53,14 +50,6 @@ dockers:
       - --platform=linux/arm/v7
 
 docker_manifests:
-  - &manifest-def
-    name_template: unixfox/{{.ProjectName}}:{{ .Version }}
-    image_templates:
-      - unixfox/{{.ProjectName}}:{{ .Version }}-armv7
-      - unixfox/{{.ProjectName}}:{{ .Version }}-arm64
-      - unixfox/{{.ProjectName}}:{{ .Version }}-amd64
-  - <<: *manifest-def
-    name_template: unixfox/{{.ProjectName}}:latest
   - &manifest-ghcrdef
     name_template: ghcr.io/unixfox/{{.ProjectName}}:{{ .Version }}
     image_templates:
