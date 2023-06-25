@@ -83,6 +83,7 @@ Flags:
 	flag.Parse()
 
 	http.HandleFunc("/", hello)
+	log.Printf("Listening on %s", listenAddress)
 	err := http.ListenAndServe(listenAddress, nil)
 	if err != nil {
 		log.Fatal(err)
