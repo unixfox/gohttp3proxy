@@ -32,7 +32,7 @@ jobs:
 
       - name: "Install ca-certificates"
         run: |
-          sudo apt-get install -t ca-certificates
+          sudo apt-get install -y ca-certificates
           sudo update-ca-certificates
 
       - name: "Create release on GitHub"
