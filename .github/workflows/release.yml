@@ -30,6 +30,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: "Install ca-certificates"
+        run: |
+          sudo apt-get install -t ca-certificates
+          sudo update-ca-certificates
+
       - name: "Create release on GitHub"
         uses: goreleaser/goreleaser-action@v3
         with: 
